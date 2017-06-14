@@ -74,7 +74,7 @@ global $pmc_options_machine;
   <form id="of_form" method="post" action="<?php echo esc_attr( $_SERVER['REQUEST_URI'] ) ?>" enctype="multipart/form-data" >
     <div id="header">
       <div class="logo">
-        <h2>Opus - Wordpress Theme</h2> 
+        <h2></h2> 
       </div>
 	  <div id="js-warning">Warning- This options panel will not work properly without javascript!</div>
       <div class="fa fa-option"> </div>
@@ -830,12 +830,7 @@ function of_ajax_callback() {
 		update_option(OPTIONS, $pmc_data);
 		die('1'); 
 	}
-	elseif($save_type == 'import_options'){
-		$pmc_data = $_POST['data'];
-		$pmc_data = unserialize(base64_decode($pmc_data)); //100% safe - ignore theme check nag
-		update_option(OPTIONS, $pmc_data);
-		die('1'); 
-	}
+
 	
 	elseif ($save_type == 'save') {
 		
@@ -1505,29 +1500,7 @@ public static function optionsframework_machine($options) {
 			$jquery_click_hook = "of-option-" . $jquery_click_hook;
 			$menu .= '<li class="'. $header_class .'"><a title="'.  $value['name'] .'" href="#'.  $jquery_click_hook  .'">'.  $value['name'] .'</a></li>';
 			$output .= '<div class="group" id="'. $jquery_click_hook  .'"><h2>'.$value['name'].'</h2>'."\n";
-		break;
-				//backup and restore options data
-				case 'backup':
-					$instructions = $value['desc'];
-					$backup = get_option('BACKUPS');
-					if(!isset($backup['backup_log'])) {
-						$log = 'No backups yet';
-					} else {
-						$log = $backup['backup_log'];
-					}
-					$output .= '<div class="backup-box">';
-					$output .= '<div class="instructions">'.$instructions."\n";
-					$output .= '<p><strong>Last Backup :<span class="backup-log">'.$log.'</span></strong></p></div>'."\n";
-					$output .= '<a href="#" id="of_backup_button" class="button" title="Backup Options">Backup Options</a>';
-					$output .= '<a href="#" id="of_restore_button" class="button" title="Restore Options">Restore Options</a>';
-					$output .= '</div>';
-				break;
-				//export or import data between different installs
-				case 'transfer':
-					$instructions = $value['desc'];
-					$output .= '<textarea id="export_data" rows="8">'.base64_encode(serialize($pmc_data)) /* 100% safe - ignore theme check nag */ .'</textarea>'."\n<br>";
-					$output .= '<a href="#" id="of_import_button" class="button" title="Restore Options">Import Options</a>';
-				break;;		
+		break;		
 		} 
 		
 		// if TYPE is an array, formatted into smaller inputs... ie smaller values

@@ -4,9 +4,9 @@
 		<custom-field action="copy">link_post_url</custom-field>
 		<custom-field action="copy">video_post_url</custom-field>
 		<custom-field action="copy">audio_post_url</custom-field>
-		<custom-field action="copy">custom_post_top</custom-field>
-		<custom-field action="copy">custom_post_footer</custom-field>
-		<custom-field action="copy">page_builder</custom-field>
+		<custom-field action="translate">custom_post_top</custom-field>
+		<custom-field action="translate">custom_post_footer</custom-field>
+		<custom-field action="translate">page_builder</custom-field>
 		<custom-field action="copy">detail_active</custom-field>
 		<custom-field action="copy">website_url</custom-field>
 		<custom-field action="copy">show_video</custom-field>	

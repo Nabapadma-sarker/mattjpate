@@ -14,20 +14,6 @@
 		$favicon = $pmc_data['favicon'];
 	if (empty($favicon)) { $favicon = get_template_directory_uri() .'/images/favicon.ico'; }	
 	?>
-	
-	<!-- set title of the page -->
-	<title>
-	<?php
-	global $page, $paged;
-	wp_title( '|', true, 'right' );
-	bloginfo( 'name' );
-	$site_description = get_bloginfo( 'description', 'display' );
-	if ( $site_description && ( is_home() || is_front_page() ) )
-		echo " | $site_description";
-	if ( $paged >= 2 || $page >= 2 )
-		echo ' | ' . sprintf( 'Page %s' , max( $paged, $page ) );
-	?>
-	</title>
 
 	<meta http-equiv="Content-Type" content="<?php bloginfo('html_type'); ?>; charset=<?php bloginfo('charset'); ?>" />
 	<link rel="icon" type="image/png" href="<?php echo $pmc_data['favicon'] ?>">
@@ -64,7 +50,7 @@
 				<div class="holder-fixedmenu">							
 					<div class="logo-fixedmenu">								
 					<?php 
-					if(isset($pmc_data['scroll_logo']) && @file_get_contents($pmc_data['scroll_logo'])){
+					if(!empty($pmc_data['scroll_logo'])){
 						$logo = $pmc_data['scroll_logo']; 
 					} else {
 						$logo = $pmc_data['logo']; 
